@@ -1,18 +1,15 @@
 package org.example.billingservice.web;
 
-import lombok.RequiredArgsConstructor;
 import org.example.billingservice.entity.Bill;
 import org.example.billingservice.feign.CustomerClientRest;
 import org.example.billingservice.feign.ProductClientRest;
 import org.example.billingservice.repository.BillRepo;
 import org.example.billingservice.repository.ProductItemRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 
 @RestController
 @RequestMapping("/api")
@@ -35,4 +32,18 @@ public class BillingRestController {
         });
         return bill;
     }
+
+    @GetMapping("bills")
+    public List<Bill> getBills(){
+        List<Bill> bills = billRepo.findAll();
+        bills.forEach(bill -> {
+            bill.setCustomer(customerClientRest.getCustomerById(bill.getCustomerId()));
+            bill.getProductItems().forEach(productItem -> {
+                productItem.setProduct(productClientRest.getProductById(productItem.getProductId()));
+            });
+        });
+        return bills;
+    }
+
+
 }
