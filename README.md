@@ -452,28 +452,5 @@ Détails des endpoints REST disponibles de l'Inventory Service pour la gestion d
 
 ---
 
-## Support et Maintenance
-
-Pour toute question ou problème :
-
-1. Consultez les logs des services
-2. Vérifiez le statut dans Eureka Dashboard
-3. Vérifiez la configuration dans Config Server
-4. Testez les endpoints individuels
-
----
-
-## Prochaines Étapes
-
-Pour améliorer cette architecture :
-
-1. Ajouter des tests d'intégration
-2. Implémenter le monitoring avec ELK ou Prometheus
-3. Ajouter le circuit breaker avec Resilience4j
-4. Configurer la sécurité avec Spring Security et OAuth2
-5. Implémenter le message broker (RabbitMQ, Kafka)
-6. Ajouter la documentation OpenAPI/Swagger
-
----
 
 
