@@ -44,6 +44,4 @@ public class BillingRestController {
         });
         return bills;
     }
-
-
 }
